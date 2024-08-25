@@ -1,0 +1,27 @@
+public class Main {
+
+    public static double footToMeter(double foot) {
+        return 0.305 * foot;
+    }
+
+    public static double meterToFoot(double meter) {
+        return 3.279 * meter;
+    }
+
+    public static void main(String[] args) {
+
+        System.out.println("Foot to Meter: ");
+        System.out.println("1. for 1.0 foot = "+footToMeter(1.0));
+        System.out.println("2. for 2.0 foot = "+footToMeter(2.0));
+        System.out.println("3. for 9.0 foot = "+footToMeter(9.0));
+        System.out.println("4. for 10.0 foot = "+footToMeter(10.0));
+        System.out.println();
+        System.out.println("Meter to Foot: ");
+        System.out.println("1. for 20.0 meter = "+meterToFoot(20.0));
+        System.out.println("2. for 25.0 meter = "+meterToFoot(25.0));
+        System.out.println("3. for 60.0 meter = "+meterToFoot(60.0));
+        System.out.println("4. for 65.0 meter = "+meterToFoot(65.0));
+
+    }
+
+}
