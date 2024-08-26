@@ -1,29 +1,82 @@
 import java.util.Scanner;
-public class Main2
-{ public static int reverse(int number){ //reverse method
-int rev=0;
-while(number>0){
-int rem=number%10;
-rev=rev*10+rem;
-number=number/10;
-}
-return rev;
-}
-public static boolean isPalindrome(int number){
-    //palindrome method
-     return number==reverse(number);
-}
-public static void main(String[] args) {
-try (Scanner s = new Scanner(System.in)) {
-    System.out.println("Enter an integer: ");
-    int n=s.nextInt();
-    if(isPalindrome(n)){ //calling method
-    System.out.println("It is a palindrome");
-    }
-    else{
-    System.out.println("It is not a palindrome");
-    }
-}
-}
-}
 
+public class CreditCardValidation {
+    public static void main(String[] args) {
+        try (Scanner input = new Scanner(System.in)) {
+            System.out.print("Enter a credit card number as a long integer: ");
+            long creditCardNumber = input.nextLong();
+            
+            if (isValid(creditCardNumber)) {
+                System.out.println(creditCardNumber + " is valid");
+            } else {
+                System.out.println(creditCardNumber + " is invalid");
+            }
+        }
+    }
+
+    /** Return true if the card number is valid */
+    public static boolean isValid(long number) {
+        // Calculate the total by adding the sums of even and odd places.
+        int total = sumOfDoubleEvenPlace(number) + sumOfOddPlace(number);
+
+        // Check if the total is divisible by 10 and if the prefix matches a known card type.
+        return (total % 10 == 0) &&
+               (prefixMatched(number, 4, 1) ||   // Visa
+                prefixMatched(number, 5, 1) ||   // Mastercard
+                prefixMatched(number, 37, 2) ||  // American Express
+                prefixMatched(number, 6, 1));    // Discover
+    }
+
+    /** Get the result from Step 2 */
+    public static int sumOfDoubleEvenPlace(long number) {
+        int sum = 0;
+        String numStr = Long.toString(number);
+
+        // Iterate over every second digit from right to left and double it.
+        for (int i = numStr.length() - 2; i >= 0; i -= 2) {
+            int digit = Integer.parseInt(String.valueOf(numStr.charAt(i)));
+            sum += getDigit(digit * 2);
+        }
+
+        return sum;
+    }
+
+    /** Return this number if it is a single digit, otherwise,
+    * return the sum of the two digits */
+    public static int getDigit(int number) {
+        // If the number is a single digit, return it; otherwise, return the sum of its digits.
+        if (number < 10) {
+            return number;
+        } else {
+            return (number % 10) + (number / 10);
+        }
+    }
+
+    /** Return sum of odd-place digits in number */
+    public static int sumOfOddPlace(long number) {
+        int sum = 0;
+        String numStr = Long.toString(number);
+
+        // Iterate over odd-positioned digits from right to left.
+        for (int i = numStr.length() - 1; i >= 0; i -= 2) {
+            int digit = Integer.parseInt(String.valueOf(numStr.charAt(i)));
+            sum += digit;
+        }
+
+        return sum;
+    }
+
+    /** Return true if the first k digits of number match prefix */
+    public static boolean prefixMatched(long number, int prefix, int k) {
+        String numStr = Long.toString(number);
+        String prefixStr = Integer.toString(prefix);
+
+        // Check if the first k digits of the number match the specified prefix.
+        if (k > numStr.length()) {
+            return false;
+        }
+
+        String numPrefix = numStr.substring(0, k);
+        return numPrefix.equals(prefixStr);
+    }
+}
