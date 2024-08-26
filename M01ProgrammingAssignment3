@@ -1,0 +1,89 @@
+import java.util.Arrays;
+public class IdenticalArrays{
+
+public static void main(String[] args) {
+
+try (java.util.Scanner input = new java.util.Scanner(System.in)) {
+    System.out.print("Enter list1: ");
+    
+    int[][] list1 = new int[3][3];
+    
+    for (int[] list11 : list1) {
+        for (int j = 0; j<list1.length; ++j) {
+            list11[j] = input.nextInt();
+        }
+    }
+    
+    // Enter values for list2
+    
+    System.out.print("Enter list2: ");
+    
+    int[][] list2 = new int[3][3];
+    
+    for (int[] list21 : list2) {
+        for (int j = 0; j<list2.length; ++j) {
+            list21[j] = input.nextInt();
+        }
+    }
+    
+    if (equal(list1, list2)) {
+    
+    System.out.println("The two arrays are identical");
+    
+    }
+    
+    else {
+    
+    System.out.println("The two arrays are not identical");
+    
+    }
+}
+
+// Enter values for list1
+
+
+}
+
+public static boolean equal(int[][] list1, int[][] list2) {
+
+int m1[] = new int[list1.length*list1.length];
+
+int m2[] = new int[list1.length*list1.length];
+
+int count = 0;
+
+    for (int[] list11 : list1) {
+        for (int j = 0; j<list1.length; ++j) {
+            m1[count++] = list11[j];
+        }
+    }
+
+count = 0;
+
+    for (int[] list21 : list2) {
+        for (int j = 0; j<list2.length; ++j) {
+            m2[count++] = list21[j];
+        }
+    }
+
+if(m1.length == m2.length)
+
+    Arrays.sort(m1);
+
+Arrays.sort(m2);
+
+// Don't return quite yet
+
+for (int i = 0; i < m1.length; i++) {
+
+if (m1[i] != m2[i])
+
+return false; // If one is wrong then they all are wrong.
+
+}
+
+return true;
+
+}
+
+}
