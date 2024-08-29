@@ -1,0 +1,100 @@
+import java.util.*;
+public class MyDate {
+	// Private members
+	private int month; // month is 0 based
+	private int date;
+	private int year;
+
+	/**
+	 * No-arg constructor sets to current date
+	 */
+	public MyDate() {
+		// use GregorianCalendar to get current date
+		GregorianCalendar calendar = new GregorianCalendar();
+		
+		month = calendar.get(Calendar.MONTH);
+		date = calendar.get(Calendar.DAY_OF_MONTH);
+		year = calendar.get(Calendar.YEAR);
+	}
+
+	/**
+	 * constructor that constructs a MyDate object with a specified elapsed time
+	 * since midnight, January 1, 1970, in milliseconds
+	 * @param lapsedTime
+	 */
+	public MyDate(long lapsedTime) {
+		setDate(lapsedTime);
+	}
+
+	/**
+	 * constructor hat constructs a MyDate object with the specified year, month,
+	 * and day
+	 * 
+	 * @param month
+	 * @param date
+	 * @param year
+	 */
+	public MyDate(int month, int date, int year) {
+		this.month = month;
+		this.date = date;
+		this.year = year;
+	}
+
+	/**
+	 * sets a new date for the object using the elapsed time.
+	 * @param elapsedTime
+	 */
+	public final void setDate(long elapsedTime) {
+		
+		GregorianCalendar calendar = new GregorianCalendar();
+		calendar.setTimeInMillis(elapsedTime);
+		
+		month = calendar.get(Calendar.MONTH);
+		date = calendar.get(Calendar.DAY_OF_MONTH);
+		year = calendar.get(Calendar.YEAR);
+	}
+
+	/**
+	 * @return the month
+	 */
+	public int getMonth() {
+		return month;
+	}
+
+	/**
+	 * @return the date
+	 */
+	public int getDate() {
+		return date;
+	}
+
+	/**
+	 * @return the year
+	 */
+	public int getYear() {
+		return year;
+	}
+}
+
+
+// Test for the following program is posted below, along with the UML Link: https://lucid.app/lucidchart/62052133-9ce7-4353-a7a6-5a9949f7676b/edit?viewport_loc=-1981%2C-629%2C2164%2C1097%2C0_0&invitationId=inv_cf63faeb-6b0a-4575-9376-5981b13c2a18
+
+public class MyDateTest {
+	
+        public static void main(String[] args) {
+            // create two dates
+            MyDate date1 = new MyDate();
+            MyDate date2 = new MyDate(561555550000L);
+            
+            //Display the dates
+            System.out.println("Year: " + date1.getYear());
+            System.out.println("Month: " + date1.getMonth());
+            System.out.println("Date: " + date1.getDate());
+            
+            System.out.println();
+            System.out.println("Year: " + date2.getYear());
+            System.out.println("Month: " + date2.getMonth());
+            System.out.println("Date: " + date2.getDate());
+        }
+    
+    }
