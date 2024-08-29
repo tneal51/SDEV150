@@ -1,0 +1,201 @@
+// GeometricObject.java
+public abstract class GeometricObject {
+    /*
+	 * Declaring instance variables
+	 * These instance variables are used 
+	 * to store the state of an object
+	 */
+	private String color;
+	private boolean filled;
+
+	/** Construct a default geometric object */
+	public GeometricObject() {
+		color = "white";
+		
+	}
+
+	/**
+	 * Construct a geometric object with 
+	 * the specified color and filled value
+	 */
+	public GeometricObject(String color, boolean filled) {
+		this.color = color;
+		this.filled = filled;
+	}
+
+	/** Return color */
+	public String getColor() {
+		return color;
+	}
+
+	/** Set a new color */
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	/**
+	 * Return filled. Since filled is boolean, 
+	 * its getter method is named isFilled
+	 */
+	public boolean isFilled() {
+		return filled;
+	}
+
+	/** Set a new filled */
+	public void setFilled(boolean filled) {
+		this.filled = filled;
+	}
+
+	public abstract double getArea();
+
+	public abstract double getPerimeter();
+
+	/** Return a string representation of this object */
+        @Override
+	public String toString() {
+		if (filled == true)
+			return "The " + color + " is filled";
+		else
+			return "The " + color + " is not filled";
+	}
+}
+
+// Triangle.java
+
+// Triangle.java
+
+class Triangle extends GeometricObject {
+	double side1;
+	double side2;
+	double side3;
+
+	/*
+	 * if( side1>side2+side3 || side2>side1+side3 || side3>side1+side2) { side1
+	 * = 1.0; side2 = 1.0; side3 = 1.0; }
+	 */
+	// Default no-arg constructor
+	public Triangle() {
+		side1 = 1.0;
+		side2 = 1.0;
+		side3 = 1.0;
+	}
+
+	// This constructor accepts values
+	public Triangle(double sideOne, double sideTwo, double sideThree,
+			String color, boolean isfilled) {
+		super(color, isfilled);
+		if (sideOne + sideTwo > sideThree && sideOne + sideThree > sideTwo
+				&& sideTwo + sideThree > sideOne) {
+			side1 = sideOne;
+			side2 = sideTwo;
+			side3 = sideThree;
+		} else {
+			side1 = 1.0;
+			side2 = 1.0;
+			side3 = 1.0;
+		}
+	}
+
+	// Get side methods
+	public double getSide1() {
+		return side1;
+	}
+
+	public double getSide2() {
+		return side2;
+	}
+
+	public double getSide3() {
+		return side3;
+	}
+
+	// Setter methods
+	public void setSide1(double sideOne) {
+		side1 = sideOne;
+	}
+
+	public void setSide2(double sideTwo) {
+		side2 = sideTwo;
+	}
+
+	public void setSide3(double sideThree) {
+		side3 = sideThree;
+	}
+
+	// Get area method
+        @Override
+	public double getArea() {
+		double area;
+		double p = (side1 + side2 + side3) / 2;
+		double step1 = (p - side1) * (p - side2) * (p - side3);
+		double step2 = p * step1;
+		area = Math.sqrt(step2);
+		return area;
+	}
+
+	// get perimeter method
+        @Override
+	public double getPerimeter() {
+		double perimeter = side1 + side2 + side3;
+		return perimeter;
+	}
+
+	// A method named toString() that returns a string description for the
+	// triangle.
+        @Override
+	public String toString() {
+		System.out.println(super.toString());
+		System.out.printf("Side#1 : %.1f, Side#2 : %.1f, Side#3 : %.1f, It has area of %.2f and perimeter of %.2f\n",
+						side1, side2, side3, getArea(), getPerimeter());
+		return " ";
+	}
+}
+
+// TriangleTest.java along with UML Link: https://lucid.app/lucidchart/d1609ad4-f15b-48e2-acf5-ac15653f6d8b/edit?view_items=g0W7Rfz1_Cbx&invitationId=inv_b37d131f-8277-41b6-8899-91cf2ab1a5a2
+
+// TriangleTest.java
+
+import java.util.Scanner;
+
+public class TriangleTest {
+
+	public static void main(String[] args) {
+
+		double side1, side2, side3;
+		String color;
+		boolean isfilled;
+		try (/*
+        		 * Creating an Scanner class object
+        		 */
+        Scanner read = new Scanner(System.in)) {
+            // getting the length of the side#1 from the user
+            System.out.print("Enter length of side#1: ");
+            side1 = read.nextDouble();
+            
+            // getting the length of the side#2 from the user
+            System.out.print("Enter length of side#2: ");
+            side2 = read.nextDouble();
+            
+            // getting the length of the side#3 from the user
+            System.out.print("Enter length of side#3: ");
+            side3 = read.nextDouble();
+            
+            // getting the triangle color from the user
+            System.out.print("Enter the Triangle Color: ");
+            color = read.next();
+            
+            // getting the triangle is filled or not from the user
+            System.out.print("Is the Triangle filled? (Y/N) ");
+            char ch = read.next().charAt(0);
+
+            isfilled = ch == 'Y' || ch == 'y';
+        }
+
+		// creating an instance of Triangle class
+		Triangle t1 = new Triangle(side1, side2, side3, color, isfilled);
+		
+		// Displaying the Triangle Info
+        System.out.println(t1);
+	}
+
+}
