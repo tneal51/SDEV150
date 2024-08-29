@@ -1,0 +1,55 @@
+/**The java program that prompts user to enter the string in binary string
+* and converts the string to decimal . If the string is not in binary
+* then throws NumberFormatException.*/
+//BinaryToDecimal.java
+import java.util.Scanner;
+public class BinaryToDecimal
+{
+public static void main(String[] args)
+{
+try (//Create an instnace of Scanner class
+Scanner scanner = new Scanner(System.in)) {
+    String binaryString;
+    
+    System.out.println("Enter Binary string :");
+    binaryString=scanner.nextLine();
+    
+    System.out.println("Binary String : "+binaryString);
+    //Calling bin2Dec that converts the binary to decimal
+    bin2Dec(binaryString);
+}
+}
+/**The method bin2Dec that takes string value and check if
+* string in binary format otherwise print the numbre format exception.
+* If the string is in binary format then converts the string to decimal
+* and prints to console*/
+private static void bin2Dec(String binaryString)
+{
+//set decimal to zero
+int decimal=0;
+
+try
+{
+
+for (int i = 0; i < binaryString.length(); i++)
+{
+//Parse from character to integer
+int n=Integer.parseInt(String.valueOf(binaryString.charAt(i)));
+
+//Throw exception if n is neither 0 or 1
+if(n!=0 && n!=1)
+throw new NumberFormatException();
+
+//otherwise calculate the value of n in binary
+    decimal+=n*Math.pow(2.0, i);
+
+}
+//print the decimal value
+System.out.println("Decimal value : "+decimal);
+}
+catch (NumberFormatException e)
+{
+System.out.println("Exception: Number Format Exception");
+}
+}//end of the method bin2dec
+}
