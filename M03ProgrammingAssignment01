@@ -1,0 +1,123 @@
+// GeometricObject.java
+@SuppressWarnings("rawtypes")
+public abstract class GeometricObject implements Comparable{
+	@Override public int compareTo(Object o) {
+		Circle circle = (Circle) o;
+		return Double.compare(getArea(), circle.getArea());
+	}
+
+	private String color = "white";
+	private boolean filled;
+	private final java.util.Date dateCreated;
+  
+	/** Construct a default geometric object */
+	protected GeometricObject() {
+	  dateCreated = new java.util.Date();
+	}
+  
+	/** Return color */
+	public String getColor() {
+	  return color;
+	}
+  
+	/** Set a new color */
+	public void setColor(String color) {
+	  this.color = color;
+	}
+  
+	/** Return filled. Since filled is boolean,
+	 *  so, the get method name is isFilled */
+	public boolean isFilled() {
+	  return filled;
+	}
+  
+	/** Set a new filled */
+	public void setFilled(boolean filled) {
+	  this.filled = filled;
+	}
+  
+	/** Get dateCreated */
+	public java.util.Date getDateCreated() {
+	  return dateCreated;
+	}
+  
+	/** Return a string representation of this object */
+	  @Override
+	public String toString() {
+	  return "created on " + dateCreated + "\ncolor: " + color +
+		" and filled: " + filled;
+	}
+  
+	/** Abstract method getArea */
+	public abstract double getArea();
+  
+	/** Abstract method getPerimeter */
+	public abstract double getPerimeter();
+  
+  }
+
+// Circle.java
+public class Circle extends GeometricObject{
+    private double radius;
+
+  public Circle() {
+  }
+
+  public Circle(double radius) {
+    this.radius = radius;
+  }
+
+  /** Return radius */
+  public double getRadius() {
+    return radius;
+  }
+
+  /** Set a new radius */
+  public void setRadius(double radius) {
+    this.radius = radius;
+  }
+
+  /** Return area */
+    @Override
+  public double getArea() {
+    return radius * radius * Math.PI;
+  }
+
+  /** Return diameter */
+  public double getDiameter() {
+    return 2 * radius;
+  }
+
+  /** Return perimeter */
+    @Override
+  public double getPerimeter() {
+    return 2 * radius * Math.PI;
+  }
+
+  /* Print the circle info */
+  public void printCircle() {
+    System.out.println("The circle is created " + getDateCreated() +
+      " and the radius is " + radius);
+  }
+
+}
+
+// CircleTest.java and the UML Link: https://lucid.app/lucidchart/d1609ad4-f15b-48e2-acf5-ac15653f6d8b/edit?view_items=g0W7Rfz1_Cbx&invitationId=inv_b37d131f-8277-41b6-8899-91cf2ab1a5a2
+
+import java.io.IOException;
+
+public class TestCircle {
+    public static void main(String[] args)throws IOException
+{
+Circle c1=new Circle(5.0);
+Circle c2=new Circle(2.0);
+Circle c3=new Circle(5.0);
+System.out.println("compare c1 and c2: "+c1.compareTo((Object)c2));
+System.out.println("compare c2 and c3: "+c2.compareTo((Object)c3));
+System.out.println("compare c3 and c1: "+c3.compareTo((Object)c1));
+System.out.println("c1 Area:"+c1.getArea());
+System.out.println("c2 Area:"+c2.getArea());
+System.out.println("c3 Area:"+c3.getArea());
+
+}
+}
