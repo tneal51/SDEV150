@@ -1,0 +1,75 @@
+import java.util.*;
+import java.io.*;
+
+public class CountKeywords {
+    public static void main(String[] args) throws Exception {
+
+        //Create a command line argument
+        File file = null;
+        if (0 < args.length) {
+            file = new File(args[0]);
+            System.out.println("The number of keywords in " + args[0] + " is " + countKeywords(file));
+
+        } else {
+            //If no argument is passed, return a message
+            System.err.println("File does not exist");
+            System.exit(1);
+        }
+
+    }
+
+    //Function countKeywords
+    public static int countKeywords(File file) throws Exception {
+        // Array of all java keywords + true, false and null
+        String[] keywordString = {"abstract", "assert", "boolean", "break",
+                "byte", "case", "catch", "char", "class", "const",
+                "continue", "default", "do", "double", "else", "enum",
+                "extends", "for", "final", "finally", "float", "goto", "if",
+                "implements", "import", "instanceof", "int", "interface", "long",
+                "native", "new", "package", "private", "protected", "public",
+                "return", "short", "static", "strictfp", "super", "switch",
+                "synchronized", "this", "throw", "throws", "transient", "try",
+                "void", "volatile", "while", "true", "false", "null"};
+
+        //Store keywords in a hash set
+        Set<String> keywordSet = new HashSet<>(Arrays.asList(keywordString));
+        int count = 0;
+
+        Scanner input = new Scanner(file);
+        //Read each line of the file
+        while (input.hasNextLine()) {
+            String line = input.nextLine();
+            //Create a temporary word variable, and add characters to word
+            String word = "";
+            int i = 0;
+            //Create a loop till the length of line
+            while (i < line.length()) {
+                //If found forward slash, don't check further
+                if (line.charAt(i) == '/') {
+                    break;
+                }
+                if (line.charAt(i) != ' ' && line.charAt(i) != '"' && line.charAt(i) != ';') {
+                    word += line.charAt(i);
+                }
+                //If found a double quotes, increment until next double quote is found
+                if (line.charAt(i) == '"') {
+                    while (i < line.length() && line.charAt(i) != '"') {
+                        i++;
+                    }
+                }
+                if (line.charAt(i) == ' ' || i == line.length() - 1) {
+                    //If word is valid increment count
+                    if (keywordSet.contains(word)) {
+                        count++;
+                    }
+                    word = "";
+                }
+
+                //increment count
+                i++;
+            }
+        }
+        return count;
+
+    }
+}
