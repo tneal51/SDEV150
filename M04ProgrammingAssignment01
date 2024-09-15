@@ -1,0 +1,141 @@
+import java.io.File;
+
+import java.io.FileNotFoundException;
+
+import java.util.Scanner;
+
+import java.util.Stack;
+
+public class MatchGroupingSymbol {
+
+
+
+public static void main(String[] args) throws FileNotFoundException {
+
+// stack containing the opening symbol pairs
+
+Stack<Character> groupSymbol= new Stack<Character>();
+
+// check if file is passed in command line argument
+
+if(args.length < 1)
+
+{
+
+System.out.println("Invalid number of arguments. Pass the filename as command line argument.");
+
+System.exit(0);
+
+}
+
+
+
+String filename = args[0];
+
+// open the file
+
+Scanner scan = new Scanner(new File(filename));
+
+// read till the end of file line by line
+
+while(scan.hasNextLine())
+
+{
+
+String line = scan.nextLine();
+
+// for each line scan the characters
+
+for(int i=0;i<line.length();i++)
+
+{
+
+// if character is opening grouping symbol, then push to the stack
+
+if(line.charAt(i) == '(' || line.charAt(i) == '{' || line.charAt(i) == '[') {
+
+groupSymbol.push(line.charAt(i));
+
+}
+
+else if(line.charAt(i) == ')' ) // if closing parenthesis
+
+{
+
+char out = groupSymbol.pop();
+
+System.out.println(out + " "+line.charAt(i));
+
+if(out != '(') {
+
+System.out.println(" Grouping is illegal 1");
+
+scan.close();
+
+System.exit(0);
+
+}
+
+}else if(line.charAt(i) == '}') // if closing braces
+
+{
+
+char out = groupSymbol.pop();
+
+System.out.println(out + " "+line.charAt(i));
+
+if(out != '{') {
+
+System.out.println(" Grouping is illegal");
+
+scan.close();
+
+System.exit(0);
+
+}
+
+}else if(line.charAt(i) == ']') // if closing brackets
+
+{
+
+char out = groupSymbol.pop();
+
+System.out.println(out + " "+line.charAt(i));
+
+if(out != '[') {
+
+System.out.println(" Grouping is illegal ");
+
+scan.close();
+
+System.exit(0);
+
+}
+
+}
+
+}
+
+}
+
+// after entire file has been read, if any character is still present in stack then illegal grouping
+
+if(!groupSymbol.isEmpty())
+
+System.out.println(" Grouping is illegal ");
+
+else
+
+System.out.println(" Grouping is legal");
+
+scan.close(); //close the file
+
+}
+
+
+
+}
+
+
+
+//end of program
