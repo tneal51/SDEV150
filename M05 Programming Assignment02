@@ -1,0 +1,57 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+// implement mouselistener for work with mouse events
+public class ChangeColor extends JFrame implements MouseListener
+{
+  boolean flag=false;
+public ChangeColor() // constructor
+{
+  setTitle("Change Circle Color On Mouse Action"); // set title to the jframe
+    setSize(500,500); // set size of the jframe
+// when user clicks X button then jframe will be close
+setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  setVisible(true); // setting jframe visible
+    addMouseListener(this); // add mouse listener
+
+}
+public void paint(Graphics g)
+{
+  super.paint(g);
+if(flag) // if mouse button is pressed then
+  g.setColor(Color.BLACK);
+else // if mouse button is released then
+  g.setColor(Color.WHITE);
+    g.fillOval(100,100,300,300); // draws filled oval
+}
+
+// overriding all mouse listener methods
+@Override
+  public void mousePressed(MouseEvent e)
+{
+    flag=true;
+      repaint();
+}
+@Override
+  public void mouseReleased(MouseEvent e)
+{
+    flag=false;
+      repaint();
+}
+@Override
+  public void mouseEntered(MouseEvent e) {
+// TODO Auto-generated method stub
+}
+@Override
+  public void mouseExited(MouseEvent e) {
+// TODO Auto-generated method stub
+}
+@Override
+  public void mouseClicked(MouseEvent e) {
+// TODO Auto-generated method stub
+}
+public static void main(String args[])
+{
+new ChangeColor(); // creating anonymous object of ChangeColor class
+}
+}
