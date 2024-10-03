@@ -1,0 +1,502 @@
+// CurrencyConverter.java
+
+package Controller;
+
+import java.util.Scanner;
+
+/**
+ * Controller.CurrencyConverter
+ */
+public class CurrencyConverter {
+
+    public static void main(String[] args) {
+        System.out.println("1 Peso");
+        System.out.println("2 USDollar");
+        System.out.println("3 Pound");
+        System.out.println("4 Euro");
+        System.out.println("5 Franc");
+        System.out.println("6 AUDollar");
+        System.out.println("7 Yen");
+        System.out.println("8 Won");
+        System.out.println("9 Krona");
+        System.out.println("10 Zar");
+
+        try (// take input
+             Scanner sc = new Scanner(System.in)) {
+            System. out.println("Choose the currency");
+            int choice = sc.nextInt();
+            System.out.println("Enter the amount");
+            double amount = sc.nextDouble();
+            // convert the amount
+            switch (choice) {
+                case 1 -> Peso_to_other(amount);
+                case 2 -> USDollar_to_other(amount);
+                case 3 -> BritishPound_to_other(amount);
+                case 4 -> Euro_to_other(amount);
+                case 5 -> SwissFranc_to_other(amount);
+                case 6 -> AustDollar_to_other(amount);
+                case 7 -> Yen_to_other(amount);
+                case 8 -> SKoreanWon_to_other(amount);
+                case 9 -> SweedishKrona_to_other(amount);
+                case 10 -> SouthAfrRand_to_other(amount);
+                default -> System.out.println("Invalid choice");
+            }
+        }
+
+    }
+    // Converts Mexican Peso to USDollar, or Euro
+    public static void Peso_to_other(double amt) {
+        System.out.println("1 Peso = " + 0.018 + " USDollar");
+        System.out.println();
+
+        System.out.println(amt+" Peso = " + (amt*0.018) + " USDollar");
+        System.out.println();
+
+        System.out.println("1 Peso = " + 0.016 + " Euro");
+        System.out.println();
+        System.out.println(amt+" Peso = " + (amt*0.016) + " Euro");
+        System.out.println();
+
+    }
+
+    // Converts USDollar to  British Pound, or Euro
+    public static void USDollar_to_other(double amt) {
+        System.out.println("1 USDollar = " + .75 + " Pound");
+        System.out.println();
+        System.out.println(amt+" USDollar = " + (amt*.75) + " Pound");
+        System.out.println();
+
+        System.out.println("1 USDollar= " + 0.90 + " Euro");
+        System.out.println();
+
+        System.out.println(amt+" USDollar = " + (amt*0.90) + " Euro");
+    }
+
+    // Converts Pound to South African Zar, or Austrialian Dollar
+    public static void BritishPound_to_other(double amt){
+        System.out.println("1 Pound = " + 0.043 + " Zar");
+        System.out.println();
+        System.out.println(amt+" Pound = " + (amt*0.043) + " Zar");
+        System.out.println();
+
+        System.out.println("1 Pound = " + 1.956 + " AUDollar");
+        System.out.println();
+
+        System.out.println(amt+" Pound = " + (amt*1.956) + " AUDollar");
+    }
+
+    // Converts Euro to British Pound, or USDollar
+    public static void Euro_to_other(double amt){
+        System.out.println("1 Euro = " + 0.84 + " Pound");
+        System.out.println();
+        System.out.println(amt+" Euro = " + (amt*.84) + " Pound");
+        System.out.println();
+
+        System.out.println("1 Euro = " + .9 + " USDollar");
+        System.out.println();
+
+        System.out.println(amt+" Euro = " + (amt*.9) + " USDollar");
+    }
+
+    // Converts Swiss Franc to British Pound, or USDollar
+    public static void SwissFranc_to_other(double amt){
+        System.out.println("1 Franc = " + 0.88 + " Pound");
+        System.out.println();
+        System.out.println(amt+" Franc = " + (amt*.88) + " Pound");
+        System.out.println();
+
+        System.out.println("1 Franc = " + 1.18 + " USDollar");
+        System.out.println();
+
+        System.out.println(amt+" Franc = " + (amt*1.18) + " USDollar");
+    }
+
+    // Converts Austrailian Dollar to Euro, or USDollar
+    public static void AustDollar_to_other(double amt){
+        System.out.println("1 AUDollar = " + 0.61 + " Euro");
+        System.out.println();
+        System.out.println(amt+" AUDollar = " + (amt*.61) + " Euro");
+        System.out.println();
+
+        System.out.println("1 AUDollar = " + .68 + " USDollar");
+        System.out.println();
+
+        System.out.println(amt+" AUDollar = " + (amt*.68) + " USDollar");
+    }
+
+    // Converts Chinese Yen to Euro, or USDollar
+    public static void Yen_to_other(double amt){
+        System.out.println("1 Yen = " + 0.01 + " Euro");
+        System.out.println();
+        System.out.println(amt+" Yen = " + (amt*.01) + " Euro");
+        System.out.println();
+
+        System.out.println("1 Yen = " + 0.01 + " USDollar");
+        System.out.println();
+
+        System.out.println(amt+" Yen = " + (amt*.01) + " USDollar");
+    }
+
+    // Converts South Korean Won to Euro, or Chinese Yen
+    public static void SKoreanWon_to_other(double amt){
+        System.out.println("1 Won = " + 0.0006 + " Euro");
+        System.out.println();
+        System.out.println(amt+" Won = " + (amt*.0006) + " Euro");
+        System.out.println();
+
+        System.out.println("1 Won = " + .11 + " Yen");
+        System.out.println();
+
+        System.out.println(amt+" Won = " + (amt*.11) + " Yen");
+    }
+
+    // Converts Sweedish Krona to Swiss Franc, or USDollar
+    public static void SweedishKrona_to_other(double amt){
+        System.out.println("1 Krona = " + 0.08 + " Franc");
+        System.out.println();
+        System.out.println(amt+" Krona = " + (amt*.08) + " Franc");
+        System.out.println();
+
+        System.out.println("1 Krona = " + .10 + " USDollar");
+        System.out.println();
+
+        System.out.println(amt+" Krona = " + (amt*.10) + " USDollar");
+    }
+
+    // Converts South African Rand to Sweedish Krona, or Euro
+    public static void SouthAfrRand_to_other(double amt){
+        System.out.println("1 Zar = " + 0.58 + " Krona");
+        System.out.println();
+        System.out.println(amt+" Zar = " + (amt*.58) + " Krona");
+        System.out.println();
+
+        System.out.println("1 Zar = " + .05 + " Euro");
+        System.out.println();
+
+        System.out.println(amt+" Zar = " + (amt*.05) + " Euro");
+    }
+}
+
+// Main.java
+
+package View;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        try (Scanner sc = new Scanner(System.in)) {
+            {
+                System. out.println("Choose the currency");
+                int choice = sc.nextInt();
+                System.out.println("Enter the amount");
+                double amount = sc.nextDouble();
+                // convert the amount
+                switch (choice) {
+                    case 1 -> Peso_to_other(amount);
+                    case 2 -> USDollar_to_other(amount);
+                    case 3 -> BritishPound_to_other(amount);
+                    case 4 -> Euro_to_other(amount);
+                    case 5 -> SwissFranc_to_other(amount);
+                    case 6 -> AustDollar_to_other(amount);
+                    case 7 -> Yen_to_other(amount);
+                    case 8 -> SKoreanWon_to_other(amount);
+                    case 9 -> SweedishKrona_to_other(amount);
+                    case 10 -> SouthAfrRand_to_other(amount);
+                    default -> System.out.println("Invalid choice");
+                }
+            }
+        }
+
+    }
+    // Converts Mexican Peso to USDollar, or Euro
+    public static void Peso_to_other(double amt) {
+        System.out.println("1 Peso = " + 0.018 + " USDollar");
+        System.out.println();
+
+        System.out.println(amt+" Peso = " + (amt*0.018) + " USDollar");
+        System.out.println();
+
+        System.out.println("1 Peso = " + 0.016 + " Euro");
+        System.out.println();
+        System.out.println(amt+" Peso = " + (amt*0.016) + " Euro");
+        System.out.println();
+
+    }
+
+    // Converts USDollar to  British Pound, or Euro
+    public static void USDollar_to_other(double amt) {
+        System.out.println("1 USDollar = " + .75 + " Pound");
+        System.out.println();
+        System.out.println(amt+" USDollar = " + (amt*.75) + " Pound");
+        System.out.println();
+
+        System.out.println("1 USDollar= " + 0.90 + " Euro");
+        System.out.println();
+
+        System.out.println(amt+" USDollar = " + (amt*0.90) + " Euro");
+    }
+
+    // Converts Pound to South African Zar, or Austrialian Dollar
+    public static void BritishPound_to_other(double amt){
+        System.out.println("1 Pound = " + 0.043 + " Zar");
+        System.out.println();
+        System.out.println(amt+" Pound = " + (amt*0.043) + " Zar");
+        System.out.println();
+
+        System.out.println("1 Pound = " + 1.956 + " AUDollar");
+        System.out.println();
+
+        System.out.println(amt+" Pound = " + (amt*1.956) + " AUDollar");
+    }
+
+    // Converts Euro to British Pound, or USDollar
+    public static void Euro_to_other(double amt){
+        System.out.println("1 Euro = " + 0.84 + " Pound");
+        System.out.println();
+        System.out.println(amt+" Euro = " + (amt*.84) + " Pound");
+        System.out.println();
+
+        System.out.println("1 Euro = " + .9 + " USDollar");
+        System.out.println();
+
+        System.out.println(amt+" Euro = " + (amt*.9) + " USDollar");
+    }
+
+    // Converts Swiss Franc to British Pound, or USDollar
+    public static void SwissFranc_to_other(double amt){
+        System.out.println("1 Franc = " + 0.88 + " Pound");
+        System.out.println();
+        System.out.println(amt+" Franc = " + (amt*.88) + " Pound");
+        System.out.println();
+
+        System.out.println("1 Franc = " + 1.18 + " USDollar");
+        System.out.println();
+
+        System.out.println(amt+" Franc = " + (amt*1.18) + " USDollar");
+    }
+
+    // Converts Austrailian Dollar to Euro, or USDollar
+    public static void AustDollar_to_other(double amt){
+        System.out.println("1 AUDollar = " + 0.61 + " Euro");
+        System.out.println();
+        System.out.println(amt+" AUDollar = " + (amt*.61) + " Euro");
+        System.out.println();
+
+        System.out.println("1 AUDollar = " + .68 + " USDollar");
+        System.out.println();
+
+        System.out.println(amt+" AUDollar = " + (amt*.68) + " USDollar");
+    }
+
+    // Converts Chinese Yen to Euro, or USDollar
+    public static void Yen_to_other(double amt){
+        System.out.println("1 Yen = " + 0.01 + " Euro");
+        System.out.println();
+        System.out.println(amt+" Yen = " + (amt*.01) + " Euro");
+        System.out.println();
+
+        System.out.println("1 Yen = " + 0.01 + " USDollar");
+        System.out.println();
+
+        System.out.println(amt+" Yen = " + (amt*.01) + " USDollar");
+    }
+
+    // Converts South Korean Won to Euro, or Chinese Yen
+    public static void SKoreanWon_to_other(double amt){
+        System.out.println("1 Won = " + 0.0006 + " Euro");
+        System.out.println();
+        System.out.println(amt+" Won = " + (amt*.0006) + " Euro");
+        System.out.println();
+
+        System.out.println("1 Won = " + .11 + " Yen");
+        System.out.println();
+
+        System.out.println(amt+" Won = " + (amt*.11) + " Yen");
+    }
+
+    // Converts Sweedish Krona to Swiss Franc, or USDollar
+    public static void SweedishKrona_to_other(double amt){
+        System.out.println("1 Krona = " + 0.08 + " Franc");
+        System.out.println();
+        System.out.println(amt+" Krona = " + (amt*.08) + " Franc");
+        System.out.println();
+
+        System.out.println("1 Krona = " + .10 + " USDollar");
+        System.out.println();
+
+        System.out.println(amt+" Krona = " + (amt*.10) + " USDollar");
+    }
+
+    // Converts South African Rand to Sweedish Krona, or Euro
+    public static void SouthAfrRand_to_other(double amt){
+        System.out.println("1 Zar = " + 0.58 + " Krona");
+        System.out.println();
+        System.out.println(amt+" Zar = " + (amt*.58) + " Krona");
+        System.out.println();
+
+        System.out.println("1 Zar = " + .05 + " Euro");
+        System.out.println();
+
+        System.out.println(amt+" Zar = " + (amt*.05) + " Euro");
+    }
+}
+
+
+
+
+// CurrencyTest.java
+
+package Controller;
+
+public class CurrencyTest {
+
+    // Converts Austrailian Dollar to Euro, or USDollar
+    public static void testAustDollar_to_other(double amt){
+        System.out.println("1 AUDollar = " + 0.61 + " Euro");
+        System.out.println();
+        System.out.println(amt+" AUDollar = " + (amt*.61) + " Euro");
+        System.out.println();
+
+        System.out.println("1 AUDollar = " + .68 + " USDollar");
+        System.out.println();
+
+        System.out.println(amt+" AUDollar = " + (amt*.68) + " USDollar");
+    }
+
+
+    // Converts USDollar to  British Pound, or Euro
+    public static void testBritishPound_to_other(double amt){
+        System.out.println("1 Pound = " + 0.043 + " Zar");
+        System.out.println();
+        System.out.println(amt+" Pound = " + (amt*0.043) + " Zar");
+        System.out.println();
+
+        System.out.println("1 Pound = " + 1.956 + " AUDollar");
+        System.out.println();
+
+        System.out.println(amt+" Pound = " + (amt*1.956) + " AUDollar");
+    }
+
+
+
+    // Converts Euro to British Pound, or USDollar
+    public static void testEuro_to_other(double amt){
+        System.out.println("1 Euro = " + 0.84 + " Pound");
+        System.out.println();
+        System.out.println(amt+" Euro = " + (amt*.84) + " Pound");
+        System.out.println();
+
+        System.out.println("1 Euro = " + .9 + " USDollar");
+        System.out.println();
+
+        System.out.println(amt+" Euro = " + (amt*.9) + " USDollar");
+
+    }
+
+
+
+    // Converts Mexican Peso to USDollar, or Euro
+    public static void testPeso_to_other(double amt) {
+        System.out.println("1 Peso = " + 0.018 + " USDollar");
+        System.out.println();
+
+        System.out.println(amt+" Peso = " + (amt*0.018) + " USDollar");
+        System.out.println();
+
+        System.out.println("1 Peso = " + 0.016 + " Euro");
+        System.out.println();
+        System.out.println(amt+" Peso = " + (amt*0.016) + " Euro");
+        System.out.println();
+
+    }
+
+
+
+    // Converts South Korean Won to Euro, or Chinese Yen
+    public static void testSKoreanWon_to_other(double amt){
+        System.out.println("1 Won = " + 0.0006 + " Euro");
+        System.out.println();
+        System.out.println(amt+" Won = " + (amt*.0006) + " Euro");
+        System.out.println();
+
+        System.out.println("1 Won = " + .11 + " Yen");
+        System.out.println();
+
+        System.out.println(amt+" Won = " + (amt*.11) + " Yen");
+
+    }
+
+
+    // Converts South African Rand to Sweedish Krona, or Euro
+    public static void testSouthAfrRand_to_other(double amt){
+        System.out.println("1 Zar = " + 0.58 + " Krona");
+        System.out.println();
+        System.out.println(amt+" Zar = " + (amt*.58) + " Krona");
+        System.out.println();
+
+        System.out.println("1 Zar = " + .05 + " Euro");
+        System.out.println();
+
+        System.out.println(amt+" Zar = " + (amt*.05) + " Euro");
+
+    }
+
+
+    // Converts Sweedish Krona to Swiss Franc, or USDollar
+    public static void testSweedishKrona_to_other(double amt){
+        System.out.println("1 Krona = " + 0.08 + " Franc");
+        System.out.println();
+        System.out.println(amt+" Krona = " + (amt*.08) + " Franc");
+        System.out.println();
+
+        System.out.println("1 Krona = " + .10 + " USDollar");
+        System.out.println();
+
+        System.out.println(amt+" Krona = " + (amt*.10) + " USDollar");
+
+    }
+
+
+    // Converts Swiss Franc to British Pound, or USDollar
+    public static void testSwissFranc_to_other(double amt){
+        System.out.println("1 Franc = " + 0.88 + " Pound");
+        System.out.println();
+        System.out.println(amt+" Franc = " + (amt*.88) + " Pound");
+        System.out.println();
+
+        System.out.println("1 Franc = " + 1.18 + " USDollar");
+        System.out.println();
+
+        System.out.println(amt+" Franc = " + (amt*1.18) + " USDollar");
+    }
+
+
+    public static void testUSDollar_to_other(double amt) {
+        System.out.println("1 USDollar = " + .75 + " Pound");
+        System.out.println();
+        System.out.println(amt+" USDollar = " + (amt*.75) + " Pound");
+        System.out.println();
+
+        System.out.println("1 USDollar= " + 0.90 + " Euro");
+        System.out.println();
+
+        System.out.println(amt+" USDollar = " + (amt*0.90) + " Euro");
+
+    }
+
+
+    // Converts Chinese Yen to Euro, or USDollar
+    public static void testYen_to_otherYen_to_other(double amt){
+        System.out.println("1 Yen = " + 0.01 + " Euro");
+        System.out.println();
+        System.out.println(amt+" Yen = " + (amt*.01) + " Euro");
+        System.out.println();
+
+        System.out.println("1 Yen = " + 0.01 + " USDollar");
+        System.out.println();
+
+        System.out.println(amt+" Yen = " + (amt*.01) + " USDollar");
+    }
+
+}
